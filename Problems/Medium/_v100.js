@@ -2,5 +2,5 @@
 
 let input = "abcdcaf";
 
-let result = function(input);
+let result = (input);
 console.log(result);

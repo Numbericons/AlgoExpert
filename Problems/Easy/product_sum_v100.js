@@ -1,17 +1,9 @@
 // Tip: You can use the Array.isArray function to check whether an item
 // is a list or an integer.
 
-//Time: O(n) one iteration per element in array | space o(n) since 
+//Time: O(n) one iteration per element including sub elements | space o(D) since recursive, equal to depth 
 
 function productSum(array, depth = 1) {
-  if (array.length === 1) {
-    if (Array.isArray(array[0])) {
-      return productSum(array[0], depth + 1);
-    } else {
-      return array[0] * depth;
-    }
-  } 
-
   let total = 0;
 
   for (let i=0; i<array.length; i++){

@@ -1,32 +1,39 @@
 // time o(n) visit each node once | space o(1) 
-function nodeDepths(root) {
-  let queue = [root]; // pretend its a queue w/ o(1) shift
-  let depthSum = 0;
-  let depth = 0;
-  let stepsTillDepth = 1;
-  let node;
+// function nodeDepths(root) {
+//   let queue = [root]; // pretend its a queue w/ o(1) shift
+//   let depthSum = 0;
+//   let depth = 0;
+//   let stepsTillDepth = 1;
+//   let node;
 
-  while (queue.length) { // 2  | 3
-    node = queue.shift();
+//   while (queue.length) { // 2  | 3
+//     node = queue.shift();
     
-    if (depth > 0) sum += depth;
+//     if (depth > 0) sum += depth;
 
-    stepsTillDepth -= 1;
-    if (stepsTillDepth === 0) depth += 1;
+//     stepsTillDepth -= 1;
+//     if (stepsTillDepth === 0) depth += 1;
     
 
-    if (node.left) {
-      queue.push(node.left);
-      stepsTillDepth += 1;
-    }
+//     if (node.left) {
+//       queue.push(node.left);
+//       stepsTillDepth += 1;
+//     }
 
-    if (node.right) {
-      queue.push(node.right);  //  3 | 4 | 5
-      stepsTillDepth += 1;
-    }
-  }
+//     if (node.right) {
+//       queue.push(node.right);  //  3 | 4 | 5
+//       stepsTillDepth += 1;
+//     }
+//   }
 
-  return depthSum;
+//   return depthSum;
+// }
+
+// Time O(N) nodes || Space O(h) height of tree
+function nodeDepths(root, depth = 0) {
+  if (!root) return 0;
+
+  return depth + nodeDepths(root.left, depth + 1) + nodeDepths(root.right, depth + 1);
 }
 
 // This is the class of the input binary tree.
