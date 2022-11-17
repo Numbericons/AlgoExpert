@@ -1,4 +1,86 @@
 // O(d) height of tree space, O(N) time
+
+// function findSuccessor(tree, node) {
+//   let order = [];
+  
+//   order = inOrder(tree, order, node);
+
+//   const idx = order.indexOf(node);
+//   return order[idx + 1];
+// }
+
+// function inOrder(node, order, target) {
+//   if (node.left) inOrder(node.left, order, target);
+  
+//   order.push(node);
+  
+//   if (node.right) inOrder(node.right, order, target);
+
+//   return order;
+// }
+
+// function inOrder(node, order, target) {
+//   if (node.left) inOrder(node.left, order, target);
+  
+//   order.push(node);
+  
+//   if (node.right) inOrder(node.right, order, target);
+
+//   return order;
+// }
+
+// function findSuccessor(tree, node) {
+//   let stack = [tree];
+//   let isSuccessor = false;
+
+//   while (stack.length) {
+//     let current = stack.pop(); //1
+//     let next = current.left;
+    
+//     while (next) {
+//       stack.push(next); //[2, 4, 6]
+//       next = next.left;
+//       continue;
+//     }
+
+//     if (isSuccessor) return current;
+//     if (current === node) isSuccessor = true;
+
+//     next = current.right;
+
+//     while (next) {
+//       stack.push(next);
+//       next = next.right;
+//     }
+//   }
+// }
+
+function findLeftMostChild(node) {
+  let current = node;
+
+  while (current.left) {
+    current = current.left;
+  }
+
+  return current;
+}
+
+function findRightMostParent(node) {
+  let current = node;
+
+  while (current.parent && current.parent.right === node) {
+      current = current.parent;
+  }
+
+  return current.parent;
+}
+
+function findSuccessor(tree, node) {
+  if (node.right) return findLeftMostChild(node.right);
+  
+  return findRightMostParent(node);
+}
+
 class BinaryTree {
   constructor(value) {
     this.value = value;
@@ -8,31 +90,9 @@ class BinaryTree {
   }
 }
 
-function findSuccessor(tree, node) {
-  const order = [];
-  
-  order = inOrder(tree, order, node);
-
-  return order[order.length -1];
-
-  // const idx = order.indexOf(node);
-  // return order[idx + 1];
-}
-
-function inOrder(node, order, target) {
-  if (node.left) inOrder(node.left, order, target);
-  
-  order.push(node);
-  
-  if (node.right) inOrder(node.right, order, target);
-
-  return order;
-}
-
 // Do not edit the lines below.
 exports.BinaryTree = BinaryTree;
 exports.findSuccessor = findSuccessor;
-
 
 let input = "abcdcaf";
 
