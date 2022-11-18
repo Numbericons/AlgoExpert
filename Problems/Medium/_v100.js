@@ -1,4 +1,4 @@
-
+//T: O(n)  | S: O(n) 
 
 let input = "abcdcaf";
 
